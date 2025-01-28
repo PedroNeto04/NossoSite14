@@ -110,12 +110,12 @@
 
       /* Corpo do site */
       body {
-          background-color: black;
-          color: white;
-          margin: 0;
-          padding: 0;
-          overflow-x: hidden; /* Impede o scroll horizontal */
-      }
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Impede o scroll horizontal */
+        }
 
       main {
           padding: 50px 20px;
@@ -192,9 +192,61 @@
               height: 150px;
           }
       }
+      #login-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 1.0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        #login-form {
+            background-color: #595656;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #login-form input {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            width: 200px;
+            border-radius: 5px;
+            border: none;
+        }
+      #login-form button {
+            padding: 10px;
+            background-color: #444;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #login-form button:hover {
+            background-color: #666;
+        }
+      #content {
+            display: none; /* Inicialmente escondido até a senha ser verificada */
+            padding: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+    <div id="login-container">
+        <div id="login-form">
+            <h2>Digite a senha para acessar o site</h2>
+            <input type="password" id="password" placeholder="Senha">
+            <button onclick="verificarSenha()">Entrar</button>
+        </div>
+    </div>
 
     <nav> 
         <ul>
@@ -252,6 +304,23 @@
     <footer>
         <p>&copy; 2025 EU TE AMO</p>
     </footer>
+
+    <script>
+        const senhaCorreta = "gabi"; // Defina a senha aqui
+
+        // Função que verifica a senha
+        function verificarSenha() {
+            const senhaInserida = document.getElementById("password").value;
+
+            if (senhaInserida === senhaCorreta) {
+                // Se a senha estiver correta, esconde o formulário de login e mostra o conteúdo
+                document.getElementById("login-container").style.display = "none";
+                document.getElementById("content").style.display = "block";
+            } else {
+                alert("Senha incorreta. Tente novamente.");
+            }
+        }
+    </script>
 
 </body>
 </html>
