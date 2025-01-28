@@ -1,19 +1,257 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Nós</title>
-    <link rel="stylesheet" href="c:\Users\pedro\OneDrive\Desktop\site\index.css">
-  </head>
-  <body>
-    <nav>
-      <ul>
-        <li>
-          <a href="#sobre-nos">Sobre Nós</a>
-        </li>
-      </ul>
+    <title>Sobre nós</title>
+    <style>    
+      /* Estilizando o menu de navegação */
+      nav {
+            display: flex; /* Usando flexbox para organizar os itens */
+            justify-content: space-between; /* Espalha os itens com espaço entre eles */
+            padding: 20px; /* Adiciona espaço ao redor do menu */
+            position: fixed; /* Fixa o menu no topo */
+            top: 0; 
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Cor de fundo do menu */
+            color: white; /* Cor do texto */
+            z-index: 10; /* Garante que o menu fique acima de outros elementos */
+        }
+
+        /* Estilo para os links */
+        nav ul {
+            display: flex; /* Organiza os links lado a lado */
+            list-style-type: none; /* Remove os marcadores padrão */
+            margin: 0; /* Remove a margem padrão */
+            padding: 0; /* Remove o padding padrão */
+            width: 100%; /* Faz com que os links ocupem toda a largura disponível */
+            justify-content: space-between; /* Espalha os itens da lista igualmente */
+        }
+
+        nav ul li {
+            display: inline-block;
+            padding: 10px 20px;
+        }
+
+        nav ul li a {
+            color: white; /* Cor do texto dos links */
+            text-decoration: none; /* Remove o sublinhado */
+            font-size: 16px;
+            transition: color 0.3s ease; /* Transição suave para a mudança de cor */
+        }
+
+      /* Cabeçalho cobrindo toda a tela */
+      header {
+          position: top; /* Fixar no topo */
+          background-image: url(img/foto.JPEG);
+          background-size: cover;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh; /* Ocupa toda a tela */
+          color: white;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          z-index: 1; /* Garantir que o conteúdo do header fique acima da camada escura */
+      }
+
+      /* Camada escura sobre a imagem do header */
+      header::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.6); /* Aplica a camada escura com opacidade 0.6 */
+          z-index: 0; /* Fica atrás do conteúdo do header */
+      }
+
+      /* Estilizando os textos */
+      h1, h2 {
+          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+          color: whitesmoke;
+          text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.626);
+          margin: 0 auto;
+          text-align: center;
+          width: 100%; /* Garante que o título ocupe toda a largura */
+      }
+
+      h1 {
+          font-size: 40px;
+      }
+
+      h2 {
+          font-size: 24px;
+          max-width: 800px;
+          margin-top: 20px;
+      }
+
+      /* Botão "Começar" */
+      .btn-comecar {
+          display: inline-block;
+          margin-top: 50px;
+          padding: 15px 30px;
+          font-size: 1.2rem;
+          background-color: black;
+          color: #fff;
+          text-decoration: none;
+          border-radius: 50px;
+          transition: background-color 0.3s;
+          z-index: 1;
+      }
+
+      .btn-comecar:hover {
+          background-color: #0b0b0b;
+      }
+
+      /* Corpo do site */
+      body {
+          background-color: black;
+          color: white;
+          margin: 0;
+          padding: 0;
+          overflow-x: hidden; /* Impede o scroll horizontal */
+      }
+
+      main {
+          padding: 50px 20px;
+          margin-top: 2vh; /* Garante que comece abaixo do header */
+          text-align: center;
+      }
+
+      section {
+          padding: 40px 10px; /* Espaçamento nas seções */
+          max-width: 1200px; /* Limita a largura das seções */
+          margin: 0 auto; /* Centraliza o conteúdo */
+          text-align: center; /* Centraliza os textos dentro das seções */
+      }
+
+      .img-centralizada{
+        border-radius: 5%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+      }
+
+      .galeria{
+          display: flex; /* Usando flexbox para colocar as imagens lado a lado */
+          justify-content: center; /* Centraliza as imagens horizontalmente */
+          gap: 20px; /* Espaçamento entre as imagens */
+          flex-wrap: wrap; /* Faz com que as imagens se ajustem em linhas se o espaço for pequeno */
+          padding: 40px 0; /* Adicionando padding para a galeria */
+      }
+
+      /* Estilizando as imagens da galeria */
+      .galeria img {
+          width: 200px; /* Tamanho da imagem */
+          height: 200px; /* Tamanho da imagem */
+          object-fit: cover; /* Garante que a imagem cubra toda a área sem distorção */
+          border-radius: 15px; /* Bordas arredondadas */
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adicionando uma sombra suave para as imagens */
+          transition: transform 0.3s; /* Efeito de transição ao passar o mouse */
+      }
+
+      /* Efeito de aumento quando passar o mouse na imagem */
+      .galeria img:hover {
+          transform: scale(1.1); /* Aumenta o tamanho da imagem */
+      }
+
+      footer {
+          text-align: center;
+          padding: 10px 0;
+          background-color: #333;
+          color: #fff;
+      }
+
+      /* Media Queries para Responsividade */
+      @media (max-width: 768px) {
+          h1 {
+              font-size: 30px;
+          }
+
+          h2 {
+              font-size: 18px;
+          }
+
+          .btn-comecar {
+              font-size: 1rem;
+              padding: 12px 25px;
+          }
+
+          .img-centralizada {
+              width: 70%; /* Imagens menores em telas menores */
+          }
+
+          .galeria img {
+              width: 150px;
+              height: 150px;
+          }
+      }
+    </style>
+</head>
+<body>
+
+    <nav> 
+        <ul>
+            <li><a href="#section2">Sobre</a></li>
+            <li><a href="#section3">Galeria</a></li>
+            <li><a href="#section4">Dedicatoria</a></li>
+        </ul>
     </nav>
-   
-  </body>
+
+    <header>
+        <h1>Nossa História</h1>
+        <h2>Bem-vindo ao nosso cantinho virtual, onde guardamos e celebramos os momentos que fazem nossa história...</h2>
+        <a href="#corpoSite" class="btn-comecar">Começar</a>
+    </header>
+    
+    <main id="corpoSite">
+        <section id="section2">
+            <h2>O INICIO</h2>
+            <p>A história começa com uma notificação no Instagram. Abro o perfil e, na hora, me deparo com aquela beldade. Uma mulher linda, com um sorriso encantador, viciada em academia. Fiquei completamente encantado. Sabia que precisava fazer algo para chamar a atenção dela, então não perdi tempo e mandei uma mensagem ousada. Não podia deixar passar a chance. Quando ela respondeu, meu coração disparou. Pensei: "Agora vai!" Demorei um pouco para responder, porque estava tentando achar algo legal para continuar a conversa, até que falei de algo aleatório.
+
+                Ela demorou para responder, e assim foi por alguns dias. Até que, finalmente, toquei em um assunto que tínhamos em comum e, a partir daí, a conversa fluiu naturalmente. A cada mensagem trocada, me encantava mais. Então, depois de conseguir o número dela, ela sumiu durante o dia todo. Fiquei preocupado, mas à noite, ela apareceu. Eu, com aquele friozinho na barriga, segui a conversa e, no meio do papo, a chamei para sair. Ela aceitou, mas logo pediu para remarcar porque estava gripada. Nessa hora, pensei: “Tá me enrolando”. Mas, para minha surpresa, no horário marcado, ela me disse que poderia ir. E eu fiquei pensando: “É agora, não vou perder isso!”
+                
+                Nos encontramos, e foi impossível não me apaixonar quando a vi. "Nossa, que mulher!</p>
+            <img src="img/fotoinicio.JPEG" alt="Nosso primeiro encontro" class="img-centralizada">
+            <p>
+                Aqui está a continuação, mantendo o tom direto e com aquele toque de mistério e encanto:
+                
+                Naquele momento, eu já sabia. Ela seria o meu amor. É um sentimento inexplicável, algo que você não consegue colocar em palavras, mas parecia que eu a conhecia a vida toda. Nossa conversa foi tão natural, a conexão foi instantânea. Não tem como explicar, mas algo estava no ar – talvez as câmeras que eu coloquei para vigiar ela, quem sabe? (Brincadeira, ou talvez não…) Mas o fato é que, desde aquele primeiro encontro, tudo nela só me deixava mais apaixonado. Cada gesto, cada sorriso, cada palavra...
+                
+                Quando cheguei em casa depois de vê-la, o vazio começou a bater. Não era só uma saudade, era algo mais profundo. Como se a minha alma sentisse que algo estava faltando. Era ela. Eu tinha acabado de conhecê-la, mas parecia que já fazia parte de mim. O sentimento de saudade me pegou de surpresa, como se ela já fosse uma parte essencial da minha vida.</p>
+        </section>
+
+        <!-- Galeria -->
+        <section id="section3">
+            <h2>Galeria</h2>
+            <div class="galeria">
+                <img src="img/aliança.jpg" alt="">
+                <img src="img/fotocarro.JPEG" alt="">
+                <img src="img/fotoprincipal.jpg" alt="">
+                <img src="img/fotoinicio.JPEG" alt="">
+                <img src="img/pizzaria.JPEG" alt="">
+                <img src="img/IMG_1906.JPEG" alt="">
+            </div>
+        </section>
+
+        <!-- Dedicatoria -->
+        <section id="section4">
+            <h2>Dedicatoria</h2>
+            <p>Dedico este site à minha namorada, que me inspira a ser um homem melhor. Você é o combustível que me move a ser o marido ideal para você, um profissional excelente e um homem de valor. Cada dia ao seu lado é um aprendizado constante. Eu te amo profundamente.
+
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 EU TE AMO</p>
+    </footer>
+
+</body>
 </html>
